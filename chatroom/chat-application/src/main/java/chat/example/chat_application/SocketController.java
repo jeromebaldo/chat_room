@@ -6,18 +6,20 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ChatController {
+public class SocketController {
 
-    private final ChatService chatService;
+    private final SocketService socketService;
 
     @Autowired
-    public ChatController(ChatService chatService) {
-        this.chatService = chatService;
+    public SocketController(SocketService socketService) {
+        this.socketService = socketService;
     }
 
     @MessageMapping("/sendMessage")
-    @SendTo("/broadcast/messages")
+    @SendTo("/broadcast/message")
     public String handleMessage(String message) throws Exception {
-        return chatService.processMessage(message);
+        return socketService.processMessage(message);
     }
+
+    
 }

@@ -4,79 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Application - MSN Style</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #E6E6FA;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .login-container {
-            width: 300px;
-            background-color: #F0F8FF;
-            border: 1px solid #A9A9A9;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .login-container img {
-            width: 80px;
-            margin-bottom: 10px;
-        }
-
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #A9A9A9;
-            border-radius: 4px;
-        }
-
-        .login-container select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #A9A9A9;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .login-container input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        .login-container button {
-            background-color: #6495ED;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .login-container button:hover {
-            background-color: #4682B4;
-        }
-
-        .login-container .options a {
-            display: block;
-            font-size: 12px;
-            color: #4682B4;
-            margin-top: 10px;
-        }
-
-        .login-container .options a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/connexion.css}">
 </head>
 <body>
     <div class="login-container">
@@ -101,7 +29,7 @@
             <input type="checkbox" id="autoLogin"> Connexion automatique
         </label>
 
-        <button onclick="window.location.href='http://localhost:8080/home'">Connexion</button>
+        <button onclick="">Connexion</button>
         <div class="options">
             <a href="#">Mot de passe oublié ?</a>
             <a href="#">Créer un nouveau compte</a>

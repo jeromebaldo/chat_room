@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  chat-app:
+    build:
+      context: ./chat-application
+      dockerfile: Dockerfile
+    container_name: chat-application
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - mychat-network
+
+  postgres:
+    build:
+      context: ./chat-db
+      dockerfile: Dockerfile
+    container_name: chat-db
+    environment:
+      POSTGRES_USER: mychatuser
+      POSTGRES_PASSWORD: mychatpassword
+      POSTGRES_DB: mychatdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - mychat-network
+
+volumes:
+  postgres_data:
+
+networks:
+  mychat-network:
+    driver: bridge

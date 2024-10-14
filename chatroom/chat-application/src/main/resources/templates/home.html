@@ -14,7 +14,7 @@
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
           console.log("Connected: " + frame);
-          stompClient.subscribe("/broadcast/messages", function (message) {
+          stompClient.subscribe("/broadcast/message", function (message) {
             showMessage(message.body);
           });
         });
