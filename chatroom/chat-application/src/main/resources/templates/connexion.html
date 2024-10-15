@@ -10,15 +10,34 @@
     <div class="login-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/MSN_logo_%282004-2009%29.svg/1024px-MSN_logo_%282004-2009%29.svg.png" alt="MSN Logo">
         <h2>Chat Application</h2>
-
-        <input type="text" id="email" placeholder="Adresse de messagerie">
-        <input type="password" id="password" placeholder="Mot de passe">
-        
+        <form action="#" th:action="@{/}" method="post">
+            <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required><br>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required><br>
+            <button type="submit">Connexion</button>
+        </form>
         <select id="status">
             <option value="online">En ligne</option>
             <option value="offline">Hors ligne</option>
         </select>
-        
+
+        <!-- Affichage des informations de l'utilisateur dans un tableau -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${user}">
+                    <td th:text="${u.get('id')}"></td>
+                    <td th:text="${u.get('username')}"></td>
+                    <td th:text="${u.get('email')}"></td>
+                </tr>
+            </tbody>
+        </table>
+
         <label>
             <input type="checkbox" id="rememberEmail"> Mémoriser mon adresse
         </label><br>

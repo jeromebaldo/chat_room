@@ -1,6 +1,10 @@
 # Variables
 DOCKER_COMPOSE = docker-compose
 
+# rebuild jar 
+j_build:
+	cd chat-application && mvn clean package
+
 # Efface les conteneurs, les images, les volumes et les réseaux
 d_clean:
 	$(DOCKER_COMPOSE) down --rmi all --volumes --remove-orphans
@@ -17,10 +21,8 @@ d_up:
 d_down:
 	$(DOCKER_COMPOSE) down
 
-# Nettoyage, reconstruction et démarrage des services
-d_rebuild: d_clean d_build d_up
+# start docker compose after rebuild
+sta: j_build d_build d_up
 
-# rebuild jar 
-j_build:
-	cd chat-application && mvn clean package
-	
+# stop docker compose and all be cleaned
+sto: d_down d_clean

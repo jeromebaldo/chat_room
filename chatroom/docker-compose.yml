@@ -9,11 +9,11 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
+      - chat-db
     networks:
       - mychat-network
 
-  postgres:
+  chat-db:
     build:
       context: ./chat-db
       dockerfile: Dockerfile
