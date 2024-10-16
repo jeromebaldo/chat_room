@@ -67,8 +67,14 @@
 
       function sendMessage() {
         var message = document.getElementById("message").value;
-        stompClient.send("/client/sendMessage", {}, message);
-        document.getElementById("message").value = ""; // Vider le champ de message après envoi
+
+        var usernameCell = document.querySelector('#userInfo td:nth-child(2)');
+        var username = usernameCell ? usernameCell.textContent : 'Inconnu';
+        
+        var userMessage = username + ": " + message;
+        console.log(userMessage);
+        stompClient.send("/client/sendMessage", {}, userMessage);
+        document.getElementById("message").value = ""; 
       }
 
       function showMessage(message) {

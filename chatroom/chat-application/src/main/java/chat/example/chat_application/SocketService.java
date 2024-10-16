@@ -13,6 +13,6 @@ public class SocketService {
 
     public String processMessage(String message) throws InterruptedException {
 
-        return ": " + message;
+        return message;
     }
 }
