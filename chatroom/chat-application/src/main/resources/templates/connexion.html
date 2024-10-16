@@ -19,25 +19,6 @@
             <option value="online">En ligne</option>
             <option value="offline">Hors ligne</option>
         </select>
-
-        <!-- Affichage des informations de l'utilisateur dans un tableau -->
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom d'utilisateur</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="u : ${user}">
-                    <td th:text="${u.get('id')}"></td>
-                    <td th:text="${u.get('username')}"></td>
-                    <td th:text="${u.get('email')}"></td>
-                </tr>
-            </tbody>
-        </table>
-
         <label>
             <input type="checkbox" id="rememberEmail"> Mémoriser mon adresse
         </label><br>
@@ -47,7 +28,6 @@
         <label>
             <input type="checkbox" id="autoLogin"> Connexion automatique
         </label>
-
         <button onclick="">Connexion</button>
         <div class="options">
             <a href="#">Mot de passe oublié ?</a>

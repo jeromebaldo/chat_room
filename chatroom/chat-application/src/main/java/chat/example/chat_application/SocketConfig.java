@@ -18,7 +18,7 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(@NonNull MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/broadcast", "/queue") ;
+        config.enableSimpleBroker("/broadcast", "/userslist") ;
         config.setApplicationDestinationPrefixes("/client");
     }
 }
