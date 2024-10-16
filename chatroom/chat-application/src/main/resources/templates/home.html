@@ -45,65 +45,7 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script type="text/javascript">
-      function connect() {
-        var socket = new SockJS("/chat");
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, function (frame) {
-          console.log("Connected: " + frame);
-
-          stompClient.subscribe("/broadcast/message", function (message) {
-            showMessage(message.body);
-          });
-
-          stompClient.subscribe("/userslist", function (message) {
-            updateUsersOnline(JSON.parse(message.body));
-          });
-
-          stompClient.send("/client/initlist", {}, {});
-        });
-      }
-
-      function sendMessage() {
-        var message = document.getElementById("message").value;
-
-        var usernameCell = document.querySelector('#userInfo td:nth-child(2)');
-        var username = usernameCell ? usernameCell.textContent : 'Inconnu';
-        
-        var userMessage = username + ": " + message;
-        console.log(userMessage);
-        stompClient.send("/client/sendMessage", {}, userMessage);
-        document.getElementById("message").value = ""; 
-      }
-
-      function showMessage(message) {
-        var response = document.getElementById("chatBox");
-        var p = document.createElement("p");
-        p.appendChild(document.createTextNode(message));
-        response.appendChild(p);
-        response.scrollTop = response.scrollHeight;
-      }
-
-      function updateUsersOnline(users) {
-        var userTable = document.getElementById("userListBody");
-        userTable.innerHTML = "";
-
-        Object.keys(users).forEach(function (username) {
-          var tr = document.createElement("tr");
-          var tdUsername = document.createElement("td");
-          var tdStatus = document.createElement("td");
-
-          tdUsername.textContent = username;
-          tdStatus.textContent = users[username] ? "En ligne" : "Hors ligne";
-
-          tr.appendChild(tdUsername);
-          tr.appendChild(tdStatus);
-          userTable.appendChild(tr);
-          console.log(tr);
-        });
-      }
-    </script>
+    <script th:src="@{/js/home.js}"></script>
   </head>
   <body>
     <h1>Simple Chat Application</h1>
@@ -133,7 +75,6 @@
       </table>
     </div>
 
-    <!-- Zone d'affichage des messages -->
     <div id="chatBox"></div>
     <input type="text" id="message" placeholder="Enter your message here..." />
     <button onclick="sendMessage()">Send</button>
@@ -146,12 +87,7 @@
           <th>Statut</th>
         </tr>
       </thead>
-      <tbody id="userListBody">
-        <!-- Les utilisateurs seront mis à jour ici par JavaScript -->
-      </tbody>
+      <tbody id="userListBody"></tbody>
     </table>
-    <script type="text/javascript">
-      connect();
-    </script>
   </body>
 </html>
