@@ -1,5 +1,8 @@
 # Chat Application
 
+![example_chatroom](https://github.com/user-attachments/assets/a64b1d1f-c282-4236-894d-92fd2afeff96)
+
+
 ## Iteration Objectives
 
 - **Learn to use Java Spring Boot**: Get back to Java development while discovering the possibilities offered by Spring Boot to build modern and high-performance applications.
