@@ -1,6 +1,7 @@
 # Chat Application
 
-![example_chatroom](https://github.com/user-attachments/assets/a64b1d1f-c282-4236-894d-92fd2afeff96)
+![image](https://github.com/user-attachments/assets/74b40c8b-eff2-41c5-b1de-182a84731886)
+
 
 
 ## Iteration Objectives
