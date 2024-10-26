@@ -23,3 +23,12 @@
 - **Implement authentication with Spring Security**: Secure access to the application via an authentication system.
 - **Improve the front-end**: Optimize the user interface for better user experience and responsiveness.
 
+## For install 
+
+- git clone this repository 
+- if you have linux system: be in the same folder than YAML, open a terminal into this folder, put the command "make sta"
+- if you have windows system: (don't be sad and change your system)
+    - be in the same folder than YAML.
+    - open a terminal into this folder
+    - put the command "docker-compose build"
+    - put the command "docker-compose up -d"
