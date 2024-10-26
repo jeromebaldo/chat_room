@@ -25,9 +25,10 @@ body {
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    width: calc(100% - 20px); /* Réduit la largeur pour ajouter de l'espace à gauche et à droite */
+    padding: 8px 10px; /* Padding horizontal augmenté */
+    margin: 10px auto; /* Ajoute de l'espace autour des champs */
+    display: block; /* Centre les champs */
     border: 1px solid #A9A9A9;
     border-radius: 4px;
 }

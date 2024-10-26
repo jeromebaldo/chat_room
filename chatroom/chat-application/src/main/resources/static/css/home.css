@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6e6fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.msn-container {
+  width: 300px;
+  background-color: #ffffff;
+  border: 2px solid #7d7d7d;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #0078d7;
+  color: white;
+  padding: 8px;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .status {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background-color: white;
+  color: #0078d7;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.status-icon {
+  background-color: #28a745;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+}
+
+.chat-body-wrapper {
+  border: 2px solid #0078d7;
+  border-radius: 5px;
+  margin: 5% 1%;
+  padding: 5px;
+  background-color: #f9f9f9;
+}
+
+.chat-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #0078d7;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.chat-body {
+  padding: 0 3% 3% 3%;
+  min-height: 250px;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  background-color: #e9e2e2;
+  text-align: left;
+}
+
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.chat-footer input[type="text"] {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.chat-footer button {
+  padding: 5px 10px;
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.chat-footer button:hover {
+  background-color: #005bb5;
+}
+
+.status-container {
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-top: 1px solid #ddd;
+}
+
+.status-group {
+  margin-bottom: 10px;
+}
+
+.status-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.status-title h3 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.status-title .arrow {
+  font-size: 1.2em;
+}
+
+.user-list {
+  display: none;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.user::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.user.online::before {
+  background-color: green;
+}
+
+.user.offline::before {
+  background-color: red;
+}
+
+.user-name {
+  font-size: 0.9em;
+}

@@ -21,41 +21,67 @@ function connect() {
 
 function sendMessage() {
   var message = document.getElementById("message").value;
-
-  var usernameCell = document.querySelector('#userInfo td:nth-child(2)');
+  var usernameCell = document.getElementById("userNameMessage");
   var username = usernameCell ? usernameCell.textContent : 'Inconnu';
-  
   var userMessage = username + ": " + message;
-  console.log(userMessage);
   stompClient.send("/client/sendMessage", {}, userMessage);
   document.getElementById("message").value = ""; 
 }
 
 function showMessage(message) {
-  var response = document.getElementById("chatBox");
-  var p = document.createElement("p");
-  p.appendChild(document.createTextNode(message));
-  response.appendChild(p);
+  var response = document.getElementsByClassName("list-message")[0];
+  var messageUser = document.createElement("p");
+  messageUser.className = "message";
+  messageUser.textContent = message; 
+
+  response.appendChild(messageUser);
   response.scrollTop = response.scrollHeight;
 }
 
-function updateUsersOnline(users) {
-  var userTable = document.getElementById("userListBody");
-  userTable.innerHTML = "";
+function toggleList(listId, titleElement) {
+  var list = document.getElementById(listId);
+  var arrow = titleElement.querySelector(".arrow");
 
-  Object.keys(users).forEach(function (username) {
-    var tr = document.createElement("tr");
-    var tdUsername = document.createElement("td");
-    var tdStatus = document.createElement("td");
-
-    tdUsername.textContent = username;
-    tdStatus.textContent = users[username] ? "En ligne" : "Hors ligne";
-
-    tr.appendChild(tdUsername);
-    tr.appendChild(tdStatus);
-    userTable.appendChild(tr);
-    console.log(tr);
-  });
+  if (list.style.display === "none" || list.style.display === "") {
+    list.style.display = "block";
+    arrow.innerHTML = "&#9660;";
+  } else {
+    list.style.display = "none";
+    arrow.innerHTML = "&#9658;";
+  }
 }
 
+function updateUsersOnline(users) {
+  var onlineCount = 0;
+  var offlineCount = 0;
+
+  var divUserOnline = document.getElementById("online-list");
+  var divUserOffline = document.getElementById("offline-list");
+
+  divUserOnline.innerHTML = "";
+  divUserOffline.innerHTML = "";
+
+  Object.keys(users).forEach(function (username) {
+    var userDiv = document.createElement("div");
+    var spanName = document.createElement("span");
+
+    spanName.className = "name";
+    spanName.textContent = username; 
+
+    if (users[username]) {
+      onlineCount++;
+      userDiv.className = "user online";
+      userDiv.appendChild(spanName);
+      divUserOnline.appendChild(userDiv);
+    } else {
+      offlineCount++;
+      userDiv.className = "user offline";
+      userDiv.appendChild(spanName);
+      divUserOffline.appendChild(userDiv);
+    }
+  });
+
+  document.getElementById("online-count").textContent = onlineCount;
+  document.getElementById("offline-count").textContent = offlineCount;
+}
 window.onload = connect;

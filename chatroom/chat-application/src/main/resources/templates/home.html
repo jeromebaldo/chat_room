@@ -3,91 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Application</title>
-    <style>
-      /* Styles pour créer un encadré pour afficher les messages */
-      #chatBox {
-        border: 1px solid #ccc;
-        width: 80%;
-        height: 300px;
-        overflow-y: auto; /* Activer le défilement si le contenu dépasse la taille du conteneur */
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: #f9f9f9;
-      }
-
-      /* Styles pour l'encadré des informations de l'utilisateur */
-      #userInfo {
-        border: 1px solid #ccc;
-        width: 80%;
-        padding: 10px;
-        margin-bottom: 20px;
-        background-color: #eaeaea;
-      }
-
-      /* Style du bouton de déconnexion */
-      #logoutButton {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      #logoutButton:hover {
-        background-color: #d32f2f;
-      }
-    </style>
+    <title>My Chat</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script th:src="@{/js/home.js}"></script>
   </head>
   <body>
-    <h1>Simple Chat Application</h1>
+    <div class="msn-container">
+      <div class="header">
+        <div class="status">
+          <div class="status-icon"></div>
+          <h2 id="userNameMessage" th:text="${user[0].username}"></h2>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button" type="submit">Logout</button>
+        </form>
+      </div>
 
-    <!-- Bouton de déconnexion -->
-    <form action="/logout" method="POST">
-      <button type="submit">Déconnexion</button>
-    </form>
+      <div class="chat-body-wrapper">
+        <div class="chat-title">General</div>
+        <div class="chat-body">
+          <hr/>
+          <div class="list-message">
+          </div>
+        </div>
+      </div>
 
-    <!-- Encadré pour afficher les informations de l'utilisateur -->
-    <div id="userInfo">
-      <h2>Informations de l'utilisateur</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nom d'utilisateur</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="u: ${user}">
-            <td th:text="${u['id']}">ID</td>
-            <td th:text="${u['username']}">Nom d'utilisateur</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="chat-footer">
+        <input type="text" id="message" placeholder="Enter your message here..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
+      <div class="status-container">
+        <div class="status-group">
+          <div class="status-title" onclick="toggleList('online-list', this)">
+            <h3>Online (<span id="online-count">0</span>)</h3>
+            <span class="arrow">&#9658;</span>
+          </div>
+          <div id="online-list" class="user-list"></div>
+        </div>
+        <div class="status-group">
+          <div class="status-title" onclick="toggleList('offline-list', this)">
+            <h3>Offline (<span id="offline-count">0</span>)</h3>
+            <span class="arrow">&#9658;</span>
+          </div>
+          <div id="offline-list" class="user-list"></div>
+        </div>
+      </div>
     </div>
-
-    <div id="chatBox"></div>
-    <input type="text" id="message" placeholder="Enter your message here..." />
-    <button onclick="sendMessage()">Send</button>
-
-    <h2>Liste des utilisateurs</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Nom d'utilisateur</th>
-          <th>Statut</th>
-        </tr>
-      </thead>
-      <tbody id="userListBody"></tbody>
-    </table>
   </body>
 </html>
